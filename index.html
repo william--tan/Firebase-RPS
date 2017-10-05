@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RPS</title>
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	      <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+<body>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+        	<label for="userId">User ID</label>
+        	<input type="text" class="form-control" id='userIdFrm'>
+        </div>
+        <div class="form-group">
+        	<label for="userId">Avatar URL</label>
+        	<input type="text" class="form-control" id='imgURLFrm'>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="createButton" type="button" class="btn btn-primary" data-dismiss='modal'>Create Player</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<div class="container top">		
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-xs 12">
+			<div class="card">
+  <img class="card-img-top" src="http://www.politicspa.com/wp-content/uploads/2013/02/Silhouette-question-mark.jpeg" width="200">
+  <div class="card-body">
+    <h4 id="playername" class="card-title text-center">Player 1</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="choice list-group-item list-group-item-action text-center" da="0">Rock</li>
+    <li class="choice list-group-item list-group-item-action text-center" da="0">Paper</li>
+    <li class="choice list-group-item list-group-item-action text-center" da="0">Scissors</li>
+  </ul>
+</div>
+
+			</div>
+
+			<div class="col-md-6 col-sm-6 col-xs 12">
+<div class="card">
+  <img class="card-img-top" src="http://www.politicspa.com/wp-content/uploads/2013/02/Silhouette-question-mark.jpeg" width="200">
+  <div class="card-body">
+    <h4 id="enemyname" class="card-title text-center">Player 2</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li id="erock" class="echoice list-group-item list-group-item-action text-center">Rock </li>
+    <li id="epaper" class="echoice list-group-item list-group-item-action text-center">Paper </li>
+    <li id="escissors" class="echoice list-group-item list-group-item-action text-center">Scissors</li>
+  </ul>
+</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="card details">
+					<div class="card-body text-center">
+						<h6 class="card-subtitle mb-2 text-muted">
+							Game Details
+						</h6>
+						<h2 id='g_msg'>Choose Your Move!</h2><br>
+						<h6 id='w_msg'>Wins: 0  &nbsp; &nbsp; Losses: 0  &nbsp; &nbsp; Draws: 0</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="jumbotron chatbox">
+					<h3 id="chatboxsign">Chat Box</h3>
+					          <div class="card chat">
+  <ul id="chatlist" class="list-group list-group-flush">
+  </ul>
+      </div>
+
+	  <form class="input-group msginput">
+      <input id="msgFrm" type="text" class="form-control" placeholder="Insert Message" aria-label="Message">
+      <span class="input-group-btn">
+      <button id="ChatSubmit" class="btn btn-secondary" type="submit">Send</button>
+      </span>
+    </form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+
+
+
+<style>
+.chosen{
+	background-color: lightgrey;
+	color:  white;
+}
+
+.chosen:hover{
+	background-color: grey;
+	color: white;
+}
+
+.win{
+	background-color: #64ba7e;
+	color:  white;
+}
+
+.win:hover{
+	background-color: #116826;
+	color:  white;
+}
+
+.lose{
+	background-color:  #e28a5a;
+	color:  white;
+}
+
+.lose:hover{
+	background-color: #681912;
+	color:  white;
+}
+
+.tie{
+	background-color: #ccb828;
+	color:  white;
+}
+
+.tie:hover{
+	background-color: #b2a511;
+	color:  white;
+}
+
+#chatlist{
+overflow-y: scroll;
+}
+
+/* .msginput{
+	margin-bottom: -40px;
+} */
+.top {
+	max-width: 600px;
+	height: auto;
+	margin-top: 40px;
+}
+
+.chatbox{
+	margin-top: 40px;
+}
+
+.details{
+	margin-top: 40px;
+}
+
+#chatboxsign{
+	font-size: 20px;
+	/* margin-top: -40px; */
+}
+
+.chat{
+	height: 300px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<script src="code.js"></script>
+</html>
